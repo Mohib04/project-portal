@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Project Portal
  * Plugin URI:        https://project.anhenterprise.com
- * Description:       By Project Portal You can add your company's project.
+ * Description:       By Project Portal You can add your company's project & Portfolio.
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
@@ -10,7 +10,6 @@
  * Author URI:        https://in.linkedin.com/in/mohib5g
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI:        https://example.com/my-plugin/
  * Text Domain:       pp
  * Domain Path:       /languages
  */
@@ -64,6 +63,8 @@ class project {
                 );
             }
         }
+
+        //Render Metabox Content
        public function render_meta_box_content() {
 ?>
 
@@ -136,13 +137,19 @@ class project {
     <?php
     while ($get_project->have_posts()): $get_project->the_post(); ?>
     <div class="card-header">
-        <?php the_title(); ?>
+        <iframe width="560" height="315" src="<?php echo get_post_meta(get_the_id(), 'url', true); ?>"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
     </div>
     <div class="card-body">
-        <h5 class="card-title"><?php echo get_post_meta(get_the_id(), 'company', true); ?></h5>
-        <h5 class="card-title"><?php echo get_post_meta(get_the_id(), 'racking', true); ?></h5>
+        <h2>Project: <?php the_title(); ?></h2>
+        <h5 class="card-title">Company Name: <?php echo get_post_meta(get_the_id(), 'company', true); ?></h5>
+        <h5 class="card-title">Manufacturer: <?php echo get_post_meta(get_the_id(), 'manufacturer', true); ?></h5>
+        <h5 class="card-title">Origin: <?php echo get_post_meta(get_the_id(), 'origin', true); ?></h5>
         <p class="card-text"><?php the_content(); ?></p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <a href="#" class="btn btn-primary">Lear More</a>
     </div>
 
     <?php endwhile; ?>
@@ -152,7 +159,6 @@ class project {
 
 return ob_get_clean();
 }
-
 
 
 
