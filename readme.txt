@@ -3,7 +3,7 @@ Contributors: Mohibbulla Munshi
 Tags: project, portal, project-portal, project managment, portfolio
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 4.2.4
+Stable tag: 1.0.0
 License: GPLv2 or later
 
 The best Project Portal to add project and portfolio in any where you want. The most trusted project solution for WordPress.

@@ -17,21 +17,15 @@
 
 <?php
 
-class project {
+class Project {
     
         public function __construct() {
             add_action("init", array($this, "pp_custom_post_type"));
             add_action("add_meta_boxes", array($this, "pp_custom_meta_box"));
             add_action("save_post", array($this, "pp_save_meta_box"));
             add_shortcode("project", array($this, "pp_project_shortcode"));
-            add_action("admin_enqueue_scripts", array($this, "pp_scripts"));
         }
-        //Enqueue style and scripts
-        public function pp_scripts(){
-            wp_enqueue_style('bootstrap4', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css');
-            wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.3.1.slim.min.js', array( 'jquery' ),'',true );
-            wp_enqueue_script( 'boot2','https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array( 'jquery' ),'',true );
-        }
+        
 
         //Start Custom Post Type
         public function pp_custom_post_type(){
@@ -110,19 +104,19 @@ class project {
     public function pp_save_meta_box(){
         global $post;
         if(isset($_POST["company"])):
-            update_post_meta($post->ID, "company", $_POST["company"] );
+            update_post_meta($post->ID, "company", sanitize_text_field($_POST["company"]) );
         endif;
         if(isset($_POST["racking"])):
-            update_post_meta($post->ID, "racking", $_POST["racking"] );
+            update_post_meta($post->ID, "racking", sanitize_text_field($_POST["racking"]) );
         endif;
         if(isset($_POST["manufacturer"])):
-            update_post_meta($post->ID, "manufacturer", $_POST["manufacturer"] );
+            update_post_meta($post->ID, "manufacturer", sanitize_text_field($_POST["manufacturer"]) );
         endif;
         if(isset($_POST["origin"])):
-            update_post_meta($post->ID, "origin", $_POST["origin"] );
+            update_post_meta($post->ID, "origin", sanitize_text_field($_POST["origin"]) );
         endif;
         if(isset($_POST["url"])):
-            update_post_meta($post->ID, "url", $_POST["url"] );
+            update_post_meta($post->ID, "url", sanitize_text_field($_POST["url"]) );
         endif;
     }
     
@@ -145,9 +139,10 @@ class project {
     </div>
     <div class="card-body">
         <h2>Project: <?php the_title(); ?></h2>
-        <h5 class="card-title">Company Name: <?php echo get_post_meta(get_the_id(), 'company', true); ?></h5>
-        <h5 class="card-title">Manufacturer: <?php echo get_post_meta(get_the_id(), 'manufacturer', true); ?></h5>
-        <h5 class="card-title">Origin: <?php echo get_post_meta(get_the_id(), 'origin', true); ?></h5>
+        <h5 class="card-title">Company Name: <?php echo esc_html(get_post_meta(get_the_id(), 'company', true)); ?></h5>
+        <h5 class="card-title">Manufacturer: <?php echo esc_html(get_post_meta(get_the_id(), 'manufacturer', true)); ?>
+        </h5>
+        <h5 class="card-title">Origin: <?php echo esc_html(get_post_meta(get_the_id(), 'origin', true)); ?></h5>
         <p class="card-text"><?php the_content(); ?></p>
         <a href="#" class="btn btn-primary">Lear More</a>
     </div>
@@ -164,6 +159,6 @@ return ob_get_clean();
 
 }
 
-$project = New project;
+$project = New Project;
 
 ?>
