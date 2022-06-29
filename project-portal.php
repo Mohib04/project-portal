@@ -1,7 +1,7 @@
 <?php 
 /**
  * Plugin Name:       Project Portal
- * Plugin URI:        https://project.anhenterprise.com
+ * Plugin URI:        https://github.com/Mohib04/project-portal.git
  * Description:       By Project Portal You can add your company's project & Portfolio.
  * Version:           1.0.0
  * Requires at least: 5.2
