@@ -68,28 +68,28 @@ class Project {
         <tr class="form-field">
             <th scope="row"><label for="company">Company Name:</label></th>
             <td><input name="company" type="text" id="company" class="code"
-                    value="<?php global $post; echo get_post_meta($post->ID, 'company', true ) ?>"></td>
+                    value="<?php global $post; echo esc_html(get_post_meta($post->ID, 'company', true )) ?>"></td>
         </tr>
         <tr class="form-field">
             <th scope="row"><label for="racking">Racking Area:</label></th>
             <td><input name="racking" type="text" id="racking" class="code"
-                    value="<?php global $post; echo get_post_meta($post->ID, 'racking', true ) ?>"></td>
+                    value="<?php global $post; echo esc_html(get_post_meta($post->ID, 'racking', true )) ?>"></td>
         </tr>
         <tr class="form-field">
             <th scope="row"><label for="manufacturer">Manufacturer Name:</label></th>
             <td><input name="manufacturer" type="text" id="manufacturer" class="code"
-                    value="<?php global $post; echo get_post_meta($post->ID, 'manufacturer', true ) ?>"></td>
+                    value="<?php global $post; echo esc_html(get_post_meta($post->ID, 'manufacturer', true )) ?>"></td>
         </tr>
         <tr class="form-field">
         <tr class="form-field">
             <th scope="row"><label for="origin">Origin Name:</label></th>
             <td><input name="origin" type="text" id="origin" class="code"
-                    value="<?php global $post; echo get_post_meta($post->ID, 'origin', true ) ?>"></td>
+                    value="<?php global $post; echo esc_html(get_post_meta($post->ID, 'origin', true )) ?>"></td>
         </tr>
         <tr class="form-field">
             <th scope="row"><label for="url">Embed URL:</label></th>
             <td><input name="url" type="text" id="url" class="code"
-                    value="<?php global $post; echo get_post_meta($post->ID, 'url', true ) ?>"></td>
+                    value="<?php global $post; echo esc_html(get_post_meta($post->ID, 'url', true )) ?>"></td>
         </tr>
 
     </tbody>
@@ -131,7 +131,7 @@ class Project {
     <?php
     while ($get_project->have_posts()): $get_project->the_post(); ?>
     <div class="card-header">
-        <iframe width="560" height="315" src="<?php echo get_post_meta(get_the_id(), 'url', true); ?>"
+        <iframe width="560" height="315" src="<?php echo esc_html(get_post_meta(get_the_id(), 'url', true)); ?>"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
